@@ -1,15 +1,14 @@
 <% include partials/head %>
 
+<!-- intro area : phần giới thiệu  -->
 <div class="container">
     <div class="jumbotron back_ground_intro">
         <div class="set_style_intro">
             <h1>Welcome.!</h1>
-            <h5 class="display-5" style="background-color: rgba(144, 100, 61, 0.2);">Giúp bạn lựa chọn nhà trọ giá hợp lí. Bắt đầu ngay hoặc đăng kí để làm thành viên.
+            <h5 class="display-5" style="background-color: rgba(144, 100, 61, 0.2);">Giúp bạn lựa chọn nhà trọ giá hợp
+                lí. Bắt đầu ngay hoặc đăng kí để làm thành viên.
             </h5>
         </div>
-        <!-- <button class="btn btn-success"><a style="color:white" href="/signin">Đăng kí</a></button>
-        <button class="btn btn-primary">Đăng nhập</button> -->
-
         <a href="/signup" class="btn btn-success">Đăng kí</a>
         <a href="/signin" class="btn btn-primary">Đăng nhập</a>
     </div>
@@ -17,7 +16,7 @@
 </div>
 
 
-
+<!-- Filter: bo loc . -->
 <div class="container">
     <div class="d-flex justify-content-start text-inline align-middle">
         <div>
@@ -31,17 +30,19 @@
 
 </div>
 
+<!-- item card  -->
 <div class="container">
+
     <div class="row">
         <%data.forEach(function(item){%>
         <div class="col-sm-12 col-md-6 col-lg-4 ">
-            <div class="card" style="width: 100%;">
+            <div class="card" style="width: 100%; box-shadow: 1px 1px #B0B1B3;">
 
                 <img src="<%= item.image %>" class="card-img-top" alt="">
                 <div class="card-body">
                     <h5 class="card-title display-5">Giá: <%= item.price %> đ</h5>
                     <p class="card-text">Địa chỉ: <%= item.address %></p>
-                    <a href="#" class="btn btn-primary">Chi tiết</a>
+                    <a href="/detail" class="btn btn-primary" type="post">Chi tiết</a>
                 </div>
             </div>
         </div>
@@ -49,7 +50,11 @@
 
 
     </div>
+
+
 </div>
+
+
 
 
 <% include partials/footer %>

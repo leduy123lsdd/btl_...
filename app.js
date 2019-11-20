@@ -9,34 +9,40 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 var arrayImages = [
     {
+        hotel_id:"123",
         image:"1.jpg",
         price:"21334 d",
         address:"the so 2"
     },
     {
-        image:"3.jpg",
-        price:"21334 d",
-        address:"the so 1"
-    },
-    {
-        image:"5.jpg",
-        price:"21334 d",
-        address:"the so 3"
-    },
-    {
+        hotel_id:"123",
         image:"2.jpg",
         price:"21334 d",
-        address:"the so 3"
+        address:"the so 2"
     },
     {
-        image:"6.jpg",
+        hotel_id:"123",
+        image:"3.jpg",
         price:"21334 d",
-        address:"the so 3"
+        address:"the so 2"
     },
     {
+        hotel_id:"123",
         image:"4.jpg",
         price:"21334 d",
-        address:"the so 3"
+        address:"the so 2"
+    },
+    {
+        hotel_id:"123",
+        image:"5.jpg",
+        price:"21334 d",
+        address:"the so 2"
+    },
+    {
+        hotel_id:"123",
+        image:"6.jpg",
+        price:"21334 d",
+        address:"the so 2"
     }
 ]
 
@@ -54,8 +60,13 @@ app.get("/signin",function(req,res){
     
 })
 
-app.get("/details",function(req,res){
+app.get("/detail",function(req,res){
     res.render("detail");
+});
+
+app.post("/detail",function(req,res){
+    // res.render("/detail",{data:arrayImages[0]})
+    console.log("chi tiet clicked");
 });
 
 app.get("/signup",function(req,res){
