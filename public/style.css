@@ -1,0 +1,64 @@
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.container {
+    max-width: 960px;
+}
+
+.pricing-header {
+    max-width: 700px;
+}
+
+.card-deck .card {
+    min-width: 220px;
+}
+
+.option a {
+    color: black;
+    text-decoration: underline;
+    padding: 10px 0;
+    display: inline;
+}
+
+.option a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+.carousel {
+    height: 12rem;
+}
+
+.carousel image {
+    height: 10px;
+}
+
+.image_resizes {
+    height: 200px;
+    overflow: hidden;
+}
+
+.card_image_height {}
+
+.card {
+    margin: 10px auto;
+}
+
+.back_ground_intro {
+    background-image: url("back_image.jpg");
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    opacity: 100%;
+}
