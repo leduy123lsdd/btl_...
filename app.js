@@ -59,13 +59,21 @@ app.get("/signin",function(req,res){
     res.render("signin");
 })
 
+// Xứ lí đăng nhập ở trong hàm này . 
 app.post("/signin",function(req,res){
     var userName = req.body.username
     var password = req.body.password
-    console.log(userName);
-    console.log(password);
     
 });
+//////////////////////
+
+// Xử lí signup ở đây 
+app.post("/signup",function(req,res){
+    var user = req.body.username;
+    var pass1 = req.body.password1;
+    var pass2 = req.body.password2;
+});
+////////
 
 app.get("/detail",function(req,res){
     res.render("detail");
