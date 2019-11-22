@@ -42,7 +42,7 @@
                 <div class="card-body">
                     <h5 class="card-title display-5">Giá: <%= item.price %> đ</h5>
                     <p class="card-text">Địa chỉ: <%= item.address %></p>
-                    <a href="/detail" class="btn btn-primary" type="post">Chi tiết</a>
+                    <a href="/detail/<%=item.hotel_id%>" class="btn btn-primary" type="GET">Chi tiết</a>
                 </div>
             </div>
         </div>
@@ -54,7 +54,24 @@
 
 </div>
 
+<div class="container">
+    <form action="">
+        <input type="text" name="name" id="ajax_user_name">
+        
+    </form>
+    <button id="get_something" class="btn btn-primary">Clickme</button>
+</div>
 
+<script>
+    var getButton = $("#get_something").click(function(){
+        var input_val = $('#ajax_user_name').val();
+        console.log(input_val.length);
+        
+        
+        
+        
+    });
+</script>
 
 
 <% include partials/footer %>

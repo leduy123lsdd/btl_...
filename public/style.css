@@ -4,7 +4,6 @@ html {
 
 body {
     font-family: 'Open Sans', sans-serif;
-    /* background-color: #6A8092; */
 }
 
 @media (min-width: 768px) {
@@ -41,8 +40,6 @@ body {
     height: 200px;
     overflow: hidden;
 }
-
-.card_image_height {}
 
 .card {
     margin: 10px auto;
