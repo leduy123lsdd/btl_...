@@ -1,21 +1,39 @@
 <% include partials/head %>
-<h1>viet trang sign up</h1>
+
 <div class="container">
-    <div class="row">
 
-        <div class="col-12">
-            <input type="text">
+	<div class="row">
+		<div class="col-3">
 
-        </div>
-        <div class="col-12">
-            <input type="text">
+		</div>
+		<div class="col-6">
+			<div class="d-flex justify-content-center"><img src="/motivation.png" alt=""></div><br>
+			<form action="/signup" method="POST">
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="User name" name="username" id="">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="password" placeholder="Password" name="password" id="">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="password" placeholder="Password" name="password" id="">
+				</div>
+				<div>
+					<p class="check"><span><input type="checkbox"></span>Tôi đồng ý với các quy định sử dụng</p>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-outline-success btn-block">Đăng kí</button>
+				</div>
+				<div>
+					<p>Đã có tài khoản?<a href="/home" style="color: blue;">Đăng nhập ngay</a></p>
+				</div>
+			</form>
+		</div>
+		<div class="col-3">
 
-        </div>
-        <div class="col-12">
-            <input type="text">
+		</div>
 
-        </div>
-    </div>
+	</div>
+
 </div>
-
 <% include partials/footer %>

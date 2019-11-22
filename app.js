@@ -57,8 +57,15 @@ app.get("/home", function(req, res) {
 
 app.get("/signin",function(req,res){
     res.render("signin");
-    
 })
+
+app.post("/signin",function(req,res){
+    var userName = req.body.username
+    var password = req.body.password
+    console.log(userName);
+    console.log(password);
+    
+});
 
 app.get("/detail",function(req,res){
     res.render("detail");
@@ -66,7 +73,9 @@ app.get("/detail",function(req,res){
 
 app.post("/detail",function(req,res){
     // res.render("/detail",{data:arrayImages[0]})
-    console.log("chi tiet clicked");
+    // console.log("chi tiet clicked");
+    console.log(req.body);
+    
 });
 
 app.get("/signup",function(req,res){

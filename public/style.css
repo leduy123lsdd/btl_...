@@ -49,11 +49,12 @@ body {
 }
 
 .back_ground_intro {
-    background-image: url("back_image.jpg");
+    background-image: url("london-4612015_640.jpg");
     overflow: hidden;
     background-size: cover;
     background-position: center;
     opacity: 100%;
+    color: white;
 }
 
 .style_slide_show {
