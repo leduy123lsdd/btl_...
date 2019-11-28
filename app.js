@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var sql = require("mssql");
 var app_tool = require("./src/index.js");
+var flash = require('flash-express');
 //Config for database.
 var config = {
     user: "sa",
@@ -11,10 +12,15 @@ var config = {
     database: "hoteldatabase"
 };
 
+
+
 app.use(express.static("public"));
 app.use(express.static("images"));
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(flash());
+
 
 var arrayImages = [
     {
@@ -64,73 +70,69 @@ app.get("/home", function (req, res) {
     res.render("home", { data: arrayImages });
 })
 
-app.get("/signin", function (req, res) {
-    res.render("signin");
-})
-
-// Xứ lí đăng nhập ở trong hàm này . 
-app.post("/signin", function (req, res) {
-    var userName = req.body.username
-    var password = req.body.password
-
-    // Connect to database.
-    sql.connect(config, function (err) {
-        if (err) console.log(err);
-        // create Request object
-        var request = new sql.Request();
-        // query to the database and get the records
-        request.query('select * from usersinfo', function (err, recordset) {
-            if (err) console.log(err)
-            // send records as a response
-            res.send(recordset);
-        });
-    });
-    sql.close()
-
-});
-//////////////////////
-
-// Xử lí signup ở đây 
-app.post("/signup", function (req, res) {
-    var user = req.body.username;
-    var pass1 = req.body.password1;
-    var pass2 = req.body.password2;
-
-    // Connect to database.
-    sql.connect(config, function (err) {
-        if (err) console.log(err);
-        // create Request object
-        var request = new sql.Request();
-        // query to the database and get the records
-        request.query('select * from usersinfo', function (err, recordset) {
-            if (err) console.log(err)
-            // send records as a response
-            res.send(recordset);
-        });
-    });
-    sql.close()
-});
-////////
+// app.get("/signin", function (req, res) {
+//     res.render("signin");
+// })
 
 app.get("/detail/:hotel_id", function (req, res) {
 
     var hotel_id = req.params.hotel_id;
     var hotel = app_tool.getHotel(hotel_id);
-    res.render("detail",{hotel:hotel});
+    res.render("detail", { hotel: hotel });
     console.log(hotel);
-    
+
 });
 
 
-app.get("/signup", function (req, res) {
-    res.render("signup");
-});
+// app.get("/signup", function (req, res) {
+//     res.render("signup");
+// });
 
 
-//ví dụ việc dùng link để gửi data vào who, khi truy cập: localhost:2000/love/duy, in ra log duy...
-app.get("/love/:who",function(req,res){
-    var loveSubject = req.params.who;
-    console.log(loveSubject);
-    
-});
 
+// SignIn
+var login_user;
+var login_user_id;
+var test = 0;
+app.get('/signin/:user_id/:password', (req, res) => {
+
+    var users = req.params.user_id;
+    var password = req.params.password;
+    // Connect to database.
+
+    sql.connect(config, function (err) {
+        if (err) console.log(err);
+        // create Request object
+        var request = new sql.Request();
+
+        // query to the database and get the records
+        request.query('select * from usersinfo', function (err, recordsets) {
+            if (err) console.log(err)
+            // Save data from db
+            var data = recordsets.recordset;
+            var status_code = {
+                status: 0,
+                user_account: ""
+            }; // 0: false, 1: success.
+            
+
+            for (i = 0; i < data.length; i++) {
+                let item = data[i];
+                if (item.user_name == users && item.password == password) {
+                    status_code.status = 1;
+                    status_code.user_account = item.user_name;
+                    break;
+                }
+            }
+            var test = 2;
+            res.send(status_code);
+
+
+        });
+    });
+
+})
+
+// Register area.
+let users = require('./routes/users');
+app.use('/users',users);

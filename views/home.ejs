@@ -9,8 +9,8 @@
                 lí. Bắt đầu ngay hoặc đăng kí để làm thành viên.
             </h5>
         </div>
-        <a href="/signup" class="btn btn-success">Đăng kí</a>
-        <a href="/signin" class="btn btn-primary">Đăng nhập</a>
+        <a href="/users/signup" class="btn btn-success">Đăng kí</a>
+        <a href="/users/signin" class="btn btn-primary">Đăng nhập</a>
     </div>
 
 </div>
@@ -54,24 +54,6 @@
 
 </div>
 
-<div class="container">
-    <form action="">
-        <input type="text" name="name" id="ajax_user_name">
-        
-    </form>
-    <button id="get_something" class="btn btn-primary">Clickme</button>
-</div>
-
-<script>
-    var getButton = $("#get_something").click(function(){
-        var input_val = $('#ajax_user_name').val();
-        console.log(input_val.length);
-        
-        
-        
-        
-    });
-</script>
 
 
 <% include partials/footer %>

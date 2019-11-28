@@ -1,39 +1,52 @@
 <% include partials/head %>
 
 <div class="container">
-
 	<div class="row">
-		<div class="col-3">
+		<div class="col-sm-1 col-md-3 col-lg-3">
 
 		</div>
-		<div class="col-6">
+		<div class="col-sm-10 col-md-6 col-lg-6">
 			<div class="d-flex justify-content-center"><img src="/motivation.png" alt=""></div><br>
-			<form action="/signup" method="POST">
+			<form method="post" action="/users/signup">
 				<div class="form-group">
-					<input class="form-control" type="text" placeholder="User name" name="username" id="">
+					<input class="form-control" type="email" placeholder="Email" id="email" name="email">
 				</div>
 				<div class="form-group">
-					<input class="form-control" type="password" placeholder="Password" name="password1" id="">
+					<input class="form-control" type="text" placeholder="User name" id="user" name="username">
+				</div>
+
+				<div class="form-group">
+					<input class="form-control" type="password" placeholder="Password" id="pass1" name="password">
 				</div>
 				<div class="form-group">
-					<input class="form-control" type="password" placeholder="Password" name="password2" id="">
+					<input class="form-control" type="password" placeholder="Password" id="pass2" name="password2">
 				</div>
 				<div>
-					<p class="check"><span><input type="checkbox"></span>Tôi đồng ý với các quy định sử dụng</p>
+					<p class="check"><span><input type="checkbox"></span> Tôi đồng ý với các quy định sử dụng</p>
 				</div>
 				<div class="form-group">
-					<button class="btn btn-outline-success btn-block">Đăng kí</button>
-				</div>
-				<div>
-					<p>Đã có tài khoản?<a href="/home" style="color: blue;">Đăng nhập ngay</a></p>
+					<button class="btn btn-danger btn-block" id="submit_button" type="submit">Đăng kí</button>
 				</div>
 			</form>
+			<div>
+				<p>Đã có tài khoản?<a href="/users/signin" style="color: blue;">Đăng nhập ngay</a></p>
+			</div>
+			<div>
+				
+			</div>
+
 		</div>
-		<div class="col-3">
+		<div class="col-sm-1 col-md-3 col-lg-3">
 
 		</div>
 
 	</div>
 
 </div>
+
+<script>
+
+
+
+</script>
 <% include partials/footer %>
