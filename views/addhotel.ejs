@@ -1,0 +1,65 @@
+<% include partials/head %>
+<div class="container">
+    <!-- <%= typeof msg != 'undefined' ? msg : '' %> -->
+        <!--
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+
+        <input type="text" name="name" id="" placeholder="name">
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>File</span>
+                <input name="myImage" id="file" id="file" type="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        <button type="" id="submit">Submit</button>
+    </form>
+    <img src="<%=typeof file != 'undefined' ? file : ''%>" alt="" style="width: 40%;"> -->
+
+    <img src="/public/uploads/myfile-1575444380783.jpg" alt="" style="width: 40%;">
+
+    <input type="text" name="city" id="city" placeholder="city"><br>
+    <input type="file" name="myfile" id="myfile" multiple><br>
+    <button onclick="send()">Send</button>
+
+
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var send = function () {
+        
+        var city = document.getElementById("city").value;
+        var myfile = document.getElementById('myfile').files;
+        if(city == ""){
+            alert('Bạn chưa nhập tên thành phố');
+        }
+        else if (myfile.length == 0){
+            alert('Bạn chưa chọn ảnh');
+        }
+        var formData = new FormData();
+        formData.append('city', city);
+        
+        for(i = 0;i < myfile.length;i++){
+            formData.append('myfile',myfile[i]);
+        }
+
+        var contentType = {
+            headers: {
+                'content-type':'multipart/form-date'
+            }
+        }
+
+        axios.post('/upload',formData,contentType)
+        .then(function (response) {
+            if(response.status == 200){
+                alert("Them thanh cong")
+            } 
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+</script>
+
+<% include partials/footer %>

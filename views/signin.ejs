@@ -1,8 +1,9 @@
 <% include partials/head %>
 
-<div class="container">
 
+<div class="container">
 	<div class="row">
+			
 		<div class="col-sm-1 col-md-3 col-lg-3"></div>
 		<div class="col-sm-10 col-md-6 col-lg-6">
 
@@ -18,7 +19,8 @@
 				<button class="btn btn-lg btn-primary btn-block" id="submit_btn">Đăng nhập</button>
 			</div>
 			<div>
-				<p>Chưa có tài khoản?<a href="/home" style="color: blue;">Đăng kí</a></p>
+				<p>Chưa có tài khoản?<a href="/users/signup" style="color: blue;">Đăng kí</a></p>
+				<p id="par_change" style="color: red;"></p>
 			</div>
 			<!-- input infomation area -->
 
@@ -31,40 +33,37 @@
 	</div>
 </div>
 
+
 <script>
-	var userName = $('#user');
-	var passWord = $('#password');
-	var pra_ajax = $('#parse_ajax_data_here');
+	$(document).ready(()=>{
 
-	$('#submit_btn').on('click', function () {
 
-		// getView();
-
-		if (userName.val() == "") {
-			alert("Bạn chưa nhập tài khoản");
-			return
-		}
-		if (passWord.val() == "") {
-			alert("Bạn chưa nhập mật khẩu");
-			return
-		}
-
-		$.ajax({
-			url: '/signin/' + userName.val() + '/' + passWord.val(),
-			type: 'GET',
-			dataType: 'json',
-			success: (data) => {
-				// pra_ajax.html('all users:' + data);
-				if (data.status == 0) {
-					alert("Bạn đã nhập sai tài khoản hoặc mật khẩu :)");
-					userName.val("");
-					passWord.val("");
+		$('#submit_btn').click(function(){
+			$.ajax({
+				url:'/users/signin',
+				type: 'POST',
+				data: {
+					username: $('#user').val(),
+					password: $('#password').val()
+				},
+				success: (data) => {
+					
+					if(data.status == 0){
+						$('#par_change').text(data.message);
+					} else {
+						$('#par_change').text("");
+						console.log(data);
+						
+						window.location.href = '/login_home/' + data.username;
+						
+						
+						
+					}
 				}
-			}
+			});
 		});
-
-	})
-
+		
+	});
 </script>
 
 <% include partials/footer %>

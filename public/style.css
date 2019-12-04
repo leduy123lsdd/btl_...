@@ -46,7 +46,7 @@ body {
 }
 
 .back_ground_intro {
-    background-image: url("london-4612015_640.jpg");
+    background-image: url("https://cdn.pixabay.com/photo/2019/11/20/20/39/easter-4641080_1280.jpg");
     overflow: hidden;
     background-size: cover;
     background-position: center;
@@ -57,10 +57,116 @@ body {
 .style_slide_show {
     box-shadow: 2px 2px 4px #000000;
 }
+
 .image_corner {
     border-radius: 10px;
 }
 
 .detai_title {
     color: #3E91D9;
+}
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 40px;
+    border-radius: 20px;
+    background-color: #f1f1f1;
+}
+
+.chip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+/* button  */
+
+/* Red */
+
+.custom_btn {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Green */
+
+.success {
+    background-color: #4CAF50;
+}
+
+/* Green */
+
+.success:hover {
+    background-color: #46a049;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+
+.collapsible {
+    color: black;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transform: 0.3s;
+    
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+.active, .collapsible:hover {
+    background-color: green;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+
+.content {
+    border-radius: 10px;
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f2f2f2;
+    color: black;
+    
+}
+
+
+
+
+.footer{
+    background-color: slategrey;
+    padding:15px;
+}
+.ft_ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+#ft_title{
+    font-weight: bold;
+    text-align: center;
+    color: teal;
+}
+#ft_text{
+    text-align: center;
+    color: darkgrey;
+}
+.image_bound_div {
+    /* overflow:hidden;
+    position:relative; */
+}
+
+.image_bound_div img {
+    position:absolute;
 }

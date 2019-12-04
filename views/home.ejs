@@ -17,7 +17,7 @@
 
 
 <!-- Filter: bo loc . -->
-<div class="container">
+<!-- <div class="container">
     <div class="d-flex justify-content-start text-inline align-middle">
         <div>
             <p>Ưu tiên xem:</p>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-</div>
+</div> -->
 
 <!-- item card  -->
 <div class="container">
@@ -38,15 +38,18 @@
         <div class="col-sm-12 col-md-6 col-lg-4 ">
             <div class="card" style="width: 100%; box-shadow: 1px 1px #B0B1B3;">
 
-                <img src="<%= item.image %>" class="card-img-top" alt="">
+                <img src="<%= item.image[0] %>" class="card-img-top" alt="">
                 <div class="card-body">
-                    <h5 class="card-title display-5">Giá: <%= item.price %> đ</h5>
+                    <p style="color: red; font-size: 14px;">Giá: <%= (item.price).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&.') %> đ/tháng</p>
+                    <h6 class="card-title display-5"><%= item.title %></h6>
                     <p class="card-text">Địa chỉ: <%= item.address %></p>
-                    <a href="/detail/<%=item.hotel_id%>" class="btn btn-primary" type="GET">Chi tiết</a>
+                    <a style="color: white;" id="detail" onclick="click_detail()" class="btn btn-primary">Chi tiết</a>
                 </div>
             </div>
+            
         </div>
         <%});%>
+        
 
 
     </div>
@@ -54,6 +57,15 @@
 
 </div>
 
+<script>
+    function click_detail(){
+        alert("Bạn phải đăng nhập mới có thể xem chi tiết !");
+    }
+
+    // $('#detail').click(function(){
+    //     alert("Bạn phải đăng nhập mới có thể xem chi tiết !");
+    // })
+</script>
 
 
 <% include partials/footer %>

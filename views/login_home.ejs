@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm"
+        style="border-radius: 15%;">
+
+        <img src="/baseline_timeline_black_24dp.png" alt="" width="40" height="40">
+        <h5 class="my-0 mr-md-auto"><a style="color: black;" href="/login_home/<%=user.username%>">Home</a></h5>
+        <nav class="my-2 my-md-0 " style="margin-right: 10px;">
+            <a class="p-2 text-dark" href="#">About</a>
+            <a class="p-2 text-dark" href="#">Support</a>
+            <div class="chip">
+                <img id="change_avatar" src="<%=user.avatar %>" alt="Person" width="40" height="40">
+                Hi,
+                <a href="" style="color: brown;"><%=user.username%></a>
+
+            </div>
+            <a class="p-2" style="color: salmon;" href="/home">Log out</a>
+        </nav>
+
+    </div>
+
+
+
+
+    <!-- intro area : phần giới thiệu  -->
+    <div class="container">
+        <div class="jumbotron back_ground_intro">
+            <div class="set_style_intro">
+
+                <a href="" style="color: whitesmoke; font-size: 20px;">Muốn cho thuê nhà trọ ?</a><br>
+
+                <button type="button" class="collapsible btn success" style="color: white;" id="click_span">Ấn vào
+                    đây</button>
+                <!-- Ẩn hiện chô đăng nhà trọ. -->
+                <div class="content">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8">
+
+                                <br>
+                                <!-- title -->
+                                <div class="form-group">
+                                    Status
+                                    <input class="form-control" type="text" placeholder="" name="title" id="title">
+                                </div>
+
+                                <!-- description -->
+                                <div class="form-group">
+                                    Mô tả
+                                    <input class="form-control" type="text" placeholder="" name="description"
+                                        id="description">
+                                </div>
+
+                                <!-- dia chi -->
+                                <div class="form-group">
+                                    Địa chỉ
+                                    <input class="form-control" type="text" placeholder="" name="address" id="address">
+                                </div>
+
+                                <!-- gia -->
+                                <div class="form-group">
+                                    Giá 1 tháng
+                                    <input class="form-control" type="number" placeholder="" name="price" id="price">
+                                </div>
+
+                                <!-- sdt -->
+                                <div class="form-group">
+                                    Số điện thoại liên hệ
+                                    <input class="form-control" type="number" placeholder="" name="phonecontact"
+                                        id="phonecontact">
+                                </div>
+
+                                <!-- đăng ảnh -->
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Chọn ảnh: </span>
+                                        <input name="myfile" id="myfile" type="file" multiple>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-lg btn-primary btn-block" onclick="send()">Đăng</button>
+                                </div>
+
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Filter: bo loc . -->
+    <!-- <div class="container">
+        <div class="d-flex justify-content-start text-inline align-middle">
+            <div>
+                <p>Ưu tiên xem:</p>
+            </div>
+            <div class="option">
+                <a class="m-2" href="" id="increase">Giá giảm dần</a>
+                <a class="m-2" href="">Giá tăng dần</a>
+            </div>
+        </div>
+
+    </div> -->
+
+    <!-- item card  -->
+    <div class="container">
+
+        <div class="row">
+            <%data.forEach(function(item){%>
+            <div class="col-sm-12 col-md-6 col-lg-4 ">
+                <div class="card" style="width: 100% height: 500px;; box-shadow: 1px 1px #B0B1B3;">
+
+                    <img src="/<%= item.image[0] %>" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <p style="color: red; font-size: 14px;">Giá:
+                            <%= (item.price).toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&.') %> đ/tháng</p>
+                        <h6 class="card-title display-5"><%= item.title %></h6>
+                        <p class="card-text">Địa chỉ: <%= item.address %></p>
+                        <a href="/detail/<%=item.hotel_id%>/<%=user.username%>" class="btn btn-primary" type="GET">Chi
+                            tiết</a>
+                    </div>
+                </div>
+            </div>
+            <%});%>
+
+
+        </div>
+
+
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        $('#increase').click(function increase() {
+            window.location.href = '/increase/' + data.username;
+        });
+
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                    // click_span
+                    $('#click_span').text("Ấn vào đây ");
+                } else {
+                    content.style.display = "block";
+                    $('#click_span').text("Ẩn đăng");
+                }
+            });
+        }
+
+
+
+        var send = function () {
+
+            var title = document.getElementById("title").value;
+            var description = document.getElementById("description").value;
+            var address = document.getElementById("address").value;
+            var price = document.getElementById("price").value;
+            var phonecontact = document.getElementById("phonecontact").value;
+            var myfile = document.getElementById('myfile').files;
+
+            if (title == "") {
+                alert('Bạn chưa nhập title');
+                return;
+            } else if (description == "") {
+                alert('Bạn chưa nhập mô tả');
+                return;
+            } else if (address == "") {
+                alert('Bạn chưa nhập địa chỉ');
+                return;
+            } else if (price == "") {
+                alert('Bạn chưa nhập giá tiền/ tháng');
+                return;
+            } else if (phonecontact == "") {
+                alert('Bạn chưa nhập số điện thoại liên hệ');
+                return;
+            } else if (myfile.length == 0) {
+                alert('Bạn chưa chọn ảnh');
+                return;
+            }
+            var formData = new FormData();
+
+            formData.append('title', title);
+            formData.append('description', description);
+            formData.append('address', address);
+            formData.append('price', price);
+            formData.append('phonecontact', phonecontact);
+
+            for (i = 0; i < myfile.length; i++) {
+                formData.append('myfile', myfile[i]);
+            }
+
+            var contentType = {
+                headers: {
+                    'content-type': 'multipart/form-date'
+                }
+            }
+
+            axios.post('/upload', formData, contentType)
+                .then(function (response) {
+                    console.log(response);
+
+                    if (response.status == 200) {
+                        alert("Đăng mới nhà trọ thành công.");
+                        location.reload();
+                    } else {
+                        alert("Đăng mới nhà trọ không thành công.");
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+        }
+
+    </script>
+
+    <hr>
+    <section id="footer-section">
+        <h3 id="ft_title">WEB PHÒNG TRỌ- NHÓM 26</h3>
+        <p id="ft_text"> Đăng tin cho thuê, tìm phòng trọ đơn giản , nhanh chóng</p>
+        <ul class="ft_ul">
+            <li>LIÊN HỆ</li>
+            <li>SĐT:0356978586 </li>
+            <li>
+                <a href="#">Facebook: Timtroonline</a>
+            </li>
+            <li>
+                support@gmail.com
+            </li>
+
+    </section>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
